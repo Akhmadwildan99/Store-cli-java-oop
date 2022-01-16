@@ -1,0 +1,32 @@
+package test.service;
+
+import entity.Product;
+import entity.ProductPrice;
+import entity.ProductTotal;
+import repository.StoreRepository;
+import repository.StoreRepositoryImpl;
+import service.StoreService;
+import service.StoreServiceImpl;
+
+public class StoreServiceTest {
+    public static void main(String[] args) {
+        testShowSProduct();
+    }
+
+    public static void testShowSProduct(){
+        StoreRepositoryImpl repository = new StoreRepositoryImpl();
+
+        repository.products[0] = new Product("Permen");
+        repository.prices[0] = new ProductPrice(500);
+        repository.totals[0] = new ProductTotal(10);
+        repository.products[1] = new Product("Snack");
+        repository.prices[1] = new ProductPrice(500);
+        repository.totals[1] = new ProductTotal(20);
+        repository.products[2] = new Product("Indomie");
+        repository.prices[2] = new ProductPrice(3000);
+        repository.totals[2] = new ProductTotal(10);
+
+        StoreService service = new StoreServiceImpl(repository);
+        service.showProduct();
+    }
+}
