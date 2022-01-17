@@ -10,7 +10,7 @@ import service.StoreServiceImpl;
 
 public class StoreServiceTest {
     public static void main(String[] args) {
-        testShowSProduct();
+        testAddProduct();
     }
 
     public static void testShowSProduct(){
@@ -27,6 +27,17 @@ public class StoreServiceTest {
         repository.totals[2] = new ProductTotal(10);
 
         StoreService service = new StoreServiceImpl(repository);
+        service.showProduct();
+    }
+
+    public static void testAddProduct(){
+        StoreRepository repository = new StoreRepositoryImpl();
+        StoreService service = new StoreServiceImpl(repository);
+
+        service.addProduct("Permen", 500, 30);
+        service.addProduct("Indomie", 3000, 30);
+        service.addProduct("Susu", 5000, 30);
+
         service.showProduct();
     }
 }

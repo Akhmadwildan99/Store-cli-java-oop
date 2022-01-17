@@ -35,8 +35,12 @@ public class StoreServiceImpl implements StoreService{
     }
 
     @Override
-    public void addProduct() {
-
+    public void addProduct(String product, Integer price, Integer total) {
+        Product productName = new Product(product);
+        ProductPrice productPrice = new ProductPrice(price);
+        ProductTotal productTotal = new ProductTotal(total);
+        storeRepository.add(productName, productPrice, productTotal);
+        System.out.println("Sukses menambah product: " + productName);
     }
 
     @Override
