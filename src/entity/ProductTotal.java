@@ -15,6 +15,7 @@ public class ProductTotal {
     }
 
 
+
     public void setTotal(Integer total) {
         this.total = total;
     }

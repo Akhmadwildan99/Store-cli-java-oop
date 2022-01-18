@@ -4,7 +4,7 @@ import entity.Product;
 import entity.ProductPrice;
 import entity.ProductTotal;
 
-import java.util.Arrays;
+import static java.lang.Integer.*;
 
 public class StoreRepositoryImpl implements StoreRepository{
     private Product[] products = new Product[10];
@@ -114,6 +114,18 @@ public class StoreRepositoryImpl implements StoreRepository{
 
     @Override
     public boolean out(Product product, ProductPrice price) {
+        if (isExist(product)){
+            int index = getIndexIfExist(products, product);
+            Integer getProduct = 0;
+            Integer remainder = price.getPrice();
+            while(remainder >= prices[index].getPrice()){
+                getProduct += 1;
+                remainder -= prices[index].getPrice();
+            }
+            System.out.println(getProduct);
+            System.out.println(remainder);
+            return true;
+        }
         return false;
     }
 

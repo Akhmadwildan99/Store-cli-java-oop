@@ -5,5 +5,5 @@ public interface StoreService {
 
     void addProduct(String product, Integer price, Integer total);
 
-    void outProduct();
+    void outProduct(String prduct, Integer price);
 }

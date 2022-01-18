@@ -34,6 +34,7 @@ public class StoreServiceImpl implements StoreService{
         }
     }
 
+
     @Override
     public void addProduct(String product, Integer price, Integer total) {
         Product productName = new Product(product);
@@ -54,7 +55,10 @@ public class StoreServiceImpl implements StoreService{
     }
 
     @Override
-    public void outProduct() {
+    public void outProduct(String product, Integer price) {
+        Product productName = new Product(product);
+        ProductPrice productPrice = new ProductPrice(price);
+        storeRepository.out(productName, productPrice);
 
     }
 }
