@@ -16,15 +16,15 @@ public class StoreServiceTest {
     public static void testShowSProduct(){
         StoreRepositoryImpl repository = new StoreRepositoryImpl();
 
-        repository.products[0] = new Product("Permen");
-        repository.prices[0] = new ProductPrice(500);
-        repository.totals[0] = new ProductTotal(10);
-        repository.products[1] = new Product("Snack");
-        repository.prices[1] = new ProductPrice(500);
-        repository.totals[1] = new ProductTotal(20);
-        repository.products[2] = new Product("Indomie");
-        repository.prices[2] = new ProductPrice(3000);
-        repository.totals[2] = new ProductTotal(10);
+//        repository.products[0] = new Product("Permen");
+//        repository.prices[0] = new ProductPrice(500);
+//        repository.totals[0] = new ProductTotal(10);
+//        repository.products[1] = new Product("Snack");
+//        repository.prices[1] = new ProductPrice(500);
+//        repository.totals[1] = new ProductTotal(20);
+//        repository.products[2] = new Product("Indomie");
+//        repository.prices[2] = new ProductPrice(3000);
+//        repository.totals[2] = new ProductTotal(10);
 
         StoreService service = new StoreServiceImpl(repository);
         service.showProduct();
@@ -36,7 +36,11 @@ public class StoreServiceTest {
 
         service.addProduct("Permen", 500, 30);
         service.addProduct("Indomie", 3000, 30);
+        service.addProduct("Susu", 5000, 0);
+        service.showProduct();
+
         service.addProduct("Susu", 5000, 30);
+        service.addProduct("Indomie", 3000, 30);
 
         service.showProduct();
     }

@@ -7,11 +7,13 @@ import entity.ProductTotal;
 import java.util.Arrays;
 
 public class StoreRepositoryImpl implements StoreRepository{
-    public Product[] products = new Product[10];
+    private Product[] products = new Product[10];
 
-    public ProductPrice[] prices = new ProductPrice[10];
+    private ProductPrice[] prices = new ProductPrice[10];
 
-    public ProductTotal[] totals = new ProductTotal[10];
+    private ProductTotal[] totals = new ProductTotal[10];
+
+    private int size = 0;
 
     @Override
     public Product[] getAllProduct() {
@@ -30,24 +32,25 @@ public class StoreRepositoryImpl implements StoreRepository{
 
     // Cek apakah ada produk yang eksis dalam array
     public boolean isExist(Product product){
-        var notExist = false;
-        for (var item : products){
-            if (product.equals(item)){
-                notExist = true;
-                break;
+        var exist = false;
+        for (var item : products) {
+            if (product.equals(item)) {
+                exist = true;
             }
         }
-        return notExist;
+        return exist;
     }
 
     // Cari index jika product is exist
 
-    public int getIndexIfExist(Product product){
+    public int getIndexIfExist(Product[] products,Product product){
         int index = 0;
-        if (isExist(product)){
-           index = Arrays.binarySearch(products, product);
+        for (int i = 0; i < products.length; i++) {
+            if (product.equals(products[i])){
+                index = i;
+                break;
+            }
         }
-
         return index;
     }
 
@@ -83,17 +86,30 @@ public class StoreRepositoryImpl implements StoreRepository{
     }
 
     @Override
-    public void add(Product product, ProductPrice price, ProductTotal total) {
-        reSizeIfFull();
-        for (int i = 0; i < products.length; i++) {
-            if (products[i] == null){
-                products[i] = product;
-                totals[i] = total;
-                prices[i] = price;
-                break;
+    public boolean add(Product product, ProductPrice price, ProductTotal total) {
+
+        if (isExist(product)){
+            return false;
+        } else {
+            reSizeIfFull();
+            products[size] = product;
+            totals[size] = total;
+            prices[size] = price;
+            size ++;
+            return true;
+        }
+    }
+
+    @Override
+    public boolean updateTotal(Product product, ProductTotal total){
+        if (isExist(product)){
+            int index = getIndexIfExist(products, product);
+            if (totals[index].getTotal() == 0){
+                totals[index] = total;
+                return true;
             }
         }
-
+        return false;
     }
 
     @Override

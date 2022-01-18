@@ -11,7 +11,9 @@ public interface StoreRepository {
 
     ProductTotal[] getAllTotal();
 
-    void add(Product product, ProductPrice price, ProductTotal total);
+    boolean add(Product product, ProductPrice price, ProductTotal total);
+
+    boolean updateTotal(Product product, ProductTotal total);
 
     boolean out(Product product, ProductPrice price);
 

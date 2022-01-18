@@ -39,8 +39,18 @@ public class StoreServiceImpl implements StoreService{
         Product productName = new Product(product);
         ProductPrice productPrice = new ProductPrice(price);
         ProductTotal productTotal = new ProductTotal(total);
-        storeRepository.add(productName, productPrice, productTotal);
-        System.out.println("Sukses menambah product: " + productName);
+        var success = storeRepository.add(productName, productPrice, productTotal);
+        if (success){
+            System.out.println("Sukses menambah product: " + productName.getProduct());
+        } else {
+            var successUpdate = storeRepository.updateTotal(productName, productTotal);
+            if (successUpdate){
+                System.out.println("Update jumlah product: " + productName.getProduct());
+            } else {
+                System.out.println("Gagal menambah atau Update jumlah product: " + productName.getProduct());
+            }
+        }
+
     }
 
     @Override
