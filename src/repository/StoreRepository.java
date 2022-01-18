@@ -7,15 +7,18 @@ import entity.ProductTotal;
 public interface StoreRepository {
     Product[] getAllProduct();
 
-    ProductPrice[] getAllPrice();
+//    ProductPrice[] getAllPrice();
+//
+//    ProductTotal[] getAllTotal();
+    Integer[] getAllPrice();
 
-    ProductTotal[] getAllTotal();
+    Integer[] getAllTotal();
 
-    boolean add(Product product, ProductPrice price, ProductTotal total);
+    boolean add(Product product, Integer price, Integer total);
 
-    boolean updateTotal(Product product, ProductTotal total);
+    boolean updateTotal(Product product, Integer total);
 
-    boolean out(Product product, ProductPrice price);
+    boolean out(Product product, Integer price);
 
-    boolean out2(Product product, ProductTotal total);
+    boolean out2(Product product, Integer total);
 }

@@ -1,7 +1,7 @@
 package entity;
 
 public class ProductTotal {
-    private Integer total;
+    public Integer total;
 
     public ProductTotal(Integer total) {
         this.total = total;

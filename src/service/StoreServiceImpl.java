@@ -16,8 +16,8 @@ public class StoreServiceImpl implements StoreService{
     @Override
     public void showProduct() {
         Product[] products = storeRepository.getAllProduct();
-        ProductPrice[] prices = storeRepository.getAllPrice();
-        ProductTotal[] totals = storeRepository.getAllTotal();
+        Integer[] prices = storeRepository.getAllPrice();
+        Integer[] totals = storeRepository.getAllTotal();
 
         System.out.println("STORE PRODUCTS");
 
@@ -29,7 +29,7 @@ public class StoreServiceImpl implements StoreService{
             var no = i + 1;
 
             if (product != null && price != null && total != null){
-                System.out.println(no + ". " + "Product: "+ product.getProduct() + " || "+"Price: " + price.getPrice() + " || "+"Total: " + total.getTotal());
+                System.out.println(no + ". " + "Product: "+ product.getProduct() + " || "+"Price: " + price + " || "+"Total: " + total);
             }
         }
     }
@@ -38,13 +38,13 @@ public class StoreServiceImpl implements StoreService{
     @Override
     public void addProduct(String product, Integer price, Integer total) {
         Product productName = new Product(product);
-        ProductPrice productPrice = new ProductPrice(price);
-        ProductTotal productTotal = new ProductTotal(total);
-        var success = storeRepository.add(productName, productPrice, productTotal);
+//        ProductPrice productPrice = new ProductPrice(price);
+//        ProductTotal productTotal = new ProductTotal(total);
+        var success = storeRepository.add(productName, price, total);
         if (success){
             System.out.println("Sukses menambah product: " + productName.getProduct());
         } else {
-            var successUpdate = storeRepository.updateTotal(productName, productTotal);
+            var successUpdate = storeRepository.updateTotal(productName, total);
             if (successUpdate){
                 System.out.println("Update jumlah product: " + productName.getProduct());
             } else {
@@ -57,8 +57,8 @@ public class StoreServiceImpl implements StoreService{
     @Override
     public void outProduct(String product, Integer price) {
         Product productName = new Product(product);
-        ProductPrice productPrice = new ProductPrice(price);
-        storeRepository.out(productName, productPrice);
+//        ProductPrice productPrice = new ProductPrice(price);
+        storeRepository.out(productName, price);
 
     }
 }

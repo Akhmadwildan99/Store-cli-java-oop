@@ -10,7 +10,7 @@ import service.StoreServiceImpl;
 
 public class StoreServiceTest {
     public static void main(String[] args) {
-        testOutProductFirst();
+        testAddProduct();
     }
 
     public static void testShowSProduct(){
@@ -36,7 +36,7 @@ public class StoreServiceTest {
 
         service.addProduct("Permen", 500, 30);
         service.addProduct("Indomie", 3000, 30);
-        service.addProduct("Susu", 5000, 0);
+        service.addProduct("Susu", 5000, 70);
         service.showProduct();
 
         service.addProduct("Susu", 5000, 30);
@@ -51,7 +51,7 @@ public class StoreServiceTest {
 
         service.addProduct("Permen", 500, 30);
         service.addProduct("Indomie", 3000, 30);
-        service.addProduct("Susu", 5000, 0);
+        service.addProduct("Susu", 5000, 50);
 
         service.showProduct();
 

@@ -9,9 +9,12 @@ import static java.lang.Integer.*;
 public class StoreRepositoryImpl implements StoreRepository{
     private Product[] products = new Product[10];
 
-    private ProductPrice[] prices = new ProductPrice[10];
+//    private ProductPrice[] prices = new ProductPrice[10];
+//
+//    private ProductTotal[] totals = new ProductTotal[10];
+    private Integer[] prices = new Integer[10];
 
-    private ProductTotal[] totals = new ProductTotal[10];
+    private Integer[] totals = new Integer[10];
 
     private int size = 0;
 
@@ -20,13 +23,21 @@ public class StoreRepositoryImpl implements StoreRepository{
         return products;
     }
 
-    @Override
-    public ProductPrice[] getAllPrice() {
+//    @Override
+//    public ProductPrice[] getAllPrice() {
+//        return prices;
+//    }
+//
+//    @Override
+//    public ProductTotal[] getAllTotal() {
+//        return totals;
+//    }
+
+    public Integer[] getAllPrice(){
         return prices;
     }
 
-    @Override
-    public ProductTotal[] getAllTotal() {
+    public  Integer[] getAllTotal(){
         return totals;
     }
 
@@ -74,8 +85,10 @@ public class StoreRepositoryImpl implements StoreRepository{
             var tempTotal = totals;
             
             products = new Product[products.length * 2];
-            prices = new ProductPrice[prices.length * 2];
-            totals = new ProductTotal[totals.length * 2];
+//            prices = new ProductPrice[prices.length * 2];
+//            totals = new ProductTotal[totals.length * 2];
+                prices = new Integer[prices.length * 2];
+                totals = new Integer[totals.length * 2];
 
             for (int i = 0; i < tempProduct.length; i++) {
                 products[i] = tempProduct[i];
@@ -86,7 +99,7 @@ public class StoreRepositoryImpl implements StoreRepository{
     }
 
     @Override
-    public boolean add(Product product, ProductPrice price, ProductTotal total) {
+    public boolean add(Product product, Integer price, Integer total) {
 
         if (isExist(product)){
             return false;
@@ -101,36 +114,36 @@ public class StoreRepositoryImpl implements StoreRepository{
     }
 
     @Override
-    public boolean updateTotal(Product product, ProductTotal total){
+    public boolean updateTotal(Product product, Integer total){
         if (isExist(product)){
             int index = getIndexIfExist(products, product);
-            if (totals[index].getTotal() == 0){
-                totals[index] = total;
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public boolean out(Product product, ProductPrice price) {
-        if (isExist(product)){
-            int index = getIndexIfExist(products, product);
-            Integer getProduct = 0;
-            Integer remainder = price.getPrice();
-            while(remainder >= prices[index].getPrice()){
-                getProduct += 1;
-                remainder -= prices[index].getPrice();
-            }
-            System.out.println(getProduct);
-            System.out.println(remainder);
+            totals[index] += total;
+            System.out.println("stock " + product.getProduct() + " diupdate menjadi: " + totals[index]);
             return true;
         }
         return false;
     }
 
     @Override
-    public boolean out2(Product product, ProductTotal total) {
+    public boolean out(Product product, Integer price) {
+        if (isExist(product)){
+            int index = getIndexIfExist(products, product);
+            Integer getProduct = 0;
+            Integer remainder = price;
+            while(remainder >= prices[index]){
+                getProduct += 1;
+                remainder -= prices[index];
+            }
+            totals[index] -= getProduct;
+            System.out.println("Sisa stock " + product.getProduct() + ": " +totals[index]);
+            System.out.println("Kembalian anda: "+ remainder);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean out2(Product product, Integer total) {
         return false;
     }
 }
