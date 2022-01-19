@@ -1,10 +1,6 @@
 package repository;
 
 import entity.Product;
-import entity.ProductPrice;
-import entity.ProductTotal;
-
-import static java.lang.Integer.*;
 
 public class StoreRepositoryImpl implements StoreRepository{
     private Product[] products = new Product[10];
@@ -134,17 +130,25 @@ public class StoreRepositoryImpl implements StoreRepository{
         if (isExist(product)){
             int index = getIndexIfExist(products, product);
             if (price < prices[index]){
+                System.out.println("Duit anda kurang!!");
                 return false;
             } else {
-                Integer getProduct = 0;
+                int getProduct = 0;
                 Integer remainder = price;
+
                 while(remainder >= prices[index]){
                     getProduct += 1;
                     remainder -= prices[index];
                 }
+
+                if (getProduct > totals[index]){
+                    System.out.println("Stock produk kurang dari jumlah yang anda mau!!");
+                    return false;
+                }
+
                 totals[index] -= getProduct;
-                removeStock(totals[index], index, product);
-                if (totals[index] != null && remainder != 0){
+                var remove = removeStock(totals[index], index, product);
+                if (totals[index] != null ){
                     System.out.println("Sisa stock " + product.getProduct() + ": " +totals[index]);
                     System.out.println("Kembalian anda: "+ remainder);
                 }
@@ -169,14 +173,35 @@ public class StoreRepositoryImpl implements StoreRepository{
             return true;
         }
 
-        return true;
+        return  false;
+
     }
 
     @Override
     public boolean out2(Product product, Integer total) {
         if (isExist(product)){
-
+            int index = getIndexIfExist(products, product);
+            if (totals[index] < total){
+                System.out.println("Maaf stock kami kurang dari jumlah yang anda mau!!");
+                return false;
+            } else{
+                Integer reminderProduct = totals[index] - total;
+                int totalPrice = total * prices[index];
+                totals[index] = reminderProduct;
+                var remove = removeStock(reminderProduct, index, product);
+                System.out.println("Jumlah harga " + product.getProduct() + ": " + totalPrice );
+                if (!remove){
+                    System.out.println("Sisa stock product " + product.getProduct() + ": " + reminderProduct);
+                }
+                return true;
+            }
         }
         return false;
     }
+
+    public int getSize(){
+        return size;
+    }
+
+
 }

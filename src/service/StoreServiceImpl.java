@@ -58,7 +58,22 @@ public class StoreServiceImpl implements StoreService{
     public void outProduct(String product, Integer price) {
         Product productName = new Product(product);
 //        ProductPrice productPrice = new ProductPrice(price);
-        storeRepository.out(productName, price);
+        var success = storeRepository.out(productName, price);
+        if (success){
+            System.out.println("PROSES SUKSES");
+        } else {
+            System.out.println("PROSES GAGAL");
+        }
+    }
 
+    @Override
+    public void outProduct2(String product, Integer total) {
+        Product productName = new Product(product);
+        var success = storeRepository.out2(productName, total);
+        if (success){
+            System.out.println("PROSES SUKSES");
+        } else {
+            System.out.println("PROSES GAGAL");
+        }
     }
 }
