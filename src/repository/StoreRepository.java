@@ -16,7 +16,7 @@ public interface StoreRepository {
 
     boolean add(Product product, Integer price, Integer total);
 
-    boolean updateTotal(Product product, Integer total);
+    boolean updateTotal(Product product,Integer price, Integer total);
 
     boolean out(Product product, Integer price);
 

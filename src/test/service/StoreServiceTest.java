@@ -40,7 +40,7 @@ public class StoreServiceTest {
         service.showProduct();
 
         service.addProduct("Susu", 5000, 30);
-        service.addProduct("Indomie", 3000, 30);
+        service.addProduct("Indomie", 4000, 30);
 
         service.showProduct();
     }
@@ -52,11 +52,13 @@ public class StoreServiceTest {
         service.addProduct("Permen", 500, 30);
         service.addProduct("Indomie", 3000, 30);
         service.addProduct("Susu", 5000, 50);
+        service.addProduct("Sabun", 3000, 40);
 
         service.showProduct();
 
         service.outProduct("Susu", 34000);
         service.outProduct("Indomie", 8000);
+        service.outProduct("Sabun", 120000);
 
         service.showProduct();
     }

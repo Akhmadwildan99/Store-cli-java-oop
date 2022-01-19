@@ -114,12 +114,17 @@ public class StoreRepositoryImpl implements StoreRepository{
     }
 
     @Override
-    public boolean updateTotal(Product product, Integer total){
+    public boolean updateTotal(Product product, Integer price,Integer total){
         if (isExist(product)){
             int index = getIndexIfExist(products, product);
-            totals[index] += total;
-            System.out.println("stock " + product.getProduct() + " diupdate menjadi: " + totals[index]);
-            return true;
+            if (price.equals(prices[index])){
+                totals[index] += total;
+                System.out.println("stock " + product.getProduct() + " diupdate menjadi: " + totals[index]);
+                return true;
+            } else{
+                return false;
+            }
+
         }
         return false;
     }
@@ -128,22 +133,50 @@ public class StoreRepositoryImpl implements StoreRepository{
     public boolean out(Product product, Integer price) {
         if (isExist(product)){
             int index = getIndexIfExist(products, product);
-            Integer getProduct = 0;
-            Integer remainder = price;
-            while(remainder >= prices[index]){
-                getProduct += 1;
-                remainder -= prices[index];
+            if (price < prices[index]){
+                return false;
+            } else {
+                Integer getProduct = 0;
+                Integer remainder = price;
+                while(remainder >= prices[index]){
+                    getProduct += 1;
+                    remainder -= prices[index];
+                }
+                totals[index] -= getProduct;
+                removeStock(totals[index], index, product);
+                if (totals[index] != null && remainder != 0){
+                    System.out.println("Sisa stock " + product.getProduct() + ": " +totals[index]);
+                    System.out.println("Kembalian anda: "+ remainder);
+                }
+                return true;
             }
-            totals[index] -= getProduct;
-            System.out.println("Sisa stock " + product.getProduct() + ": " +totals[index]);
-            System.out.println("Kembalian anda: "+ remainder);
-            return true;
+
         }
         return false;
     }
 
+    public boolean removeStock(Integer total, int index, Product product){
+        if (total < 0){
+            return false;
+        } else if (total == 0){
+            for (int i = index; i < size; i++) {
+                products[i] = products[i + 1];
+                prices[i] = prices[i + 1];
+                totals[i] = totals[i + 1];
+            }
+            size--;
+            System.out.println("Stock " + product.getProduct() + " sekarang kosong!");
+            return true;
+        }
+
+        return true;
+    }
+
     @Override
     public boolean out2(Product product, Integer total) {
+        if (isExist(product)){
+
+        }
         return false;
     }
 }
