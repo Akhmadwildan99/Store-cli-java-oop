@@ -1,8 +1,5 @@
 package test.service;
 
-import entity.Product;
-import entity.ProductPrice;
-import entity.ProductTotal;
 import repository.StoreRepository;
 import repository.StoreRepositoryImpl;
 import service.StoreService;

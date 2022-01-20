@@ -5,9 +5,6 @@ import entity.Product;
 public class StoreRepositoryImpl implements StoreRepository{
     private Product[] products = new Product[10];
 
-//    private ProductPrice[] prices = new ProductPrice[10];
-//
-//    private ProductTotal[] totals = new ProductTotal[10];
     private Integer[] prices = new Integer[10];
 
     private Integer[] totals = new Integer[10];
@@ -18,16 +15,6 @@ public class StoreRepositoryImpl implements StoreRepository{
     public Product[] getAllProduct() {
         return products;
     }
-
-//    @Override
-//    public ProductPrice[] getAllPrice() {
-//        return prices;
-//    }
-//
-//    @Override
-//    public ProductTotal[] getAllTotal() {
-//        return totals;
-//    }
 
     public Integer[] getAllPrice(){
         return prices;

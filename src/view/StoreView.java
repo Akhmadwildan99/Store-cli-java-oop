@@ -12,8 +12,9 @@ public class StoreView {
 
     public void showProducts(){
         while (true){
+            System.out.println("");
             storeService.showProduct();
-
+            System.out.println("");
             System.out.println("Menu:");
             System.out.println("1) TAMBAH PEODUK");
             System.out.println("2) CHECK OUT (dengan sejumlah uang)");

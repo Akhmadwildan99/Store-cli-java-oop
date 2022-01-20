@@ -1,15 +1,10 @@
 package repository;
 
 import entity.Product;
-import entity.ProductPrice;
-import entity.ProductTotal;
 
 public interface StoreRepository {
     Product[] getAllProduct();
 
-//    ProductPrice[] getAllPrice();
-//
-//    ProductTotal[] getAllTotal();
     Integer[] getAllPrice();
 
     Integer[] getAllTotal();
