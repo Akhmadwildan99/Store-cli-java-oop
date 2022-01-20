@@ -3,8 +3,10 @@ package service;
 import entity.Product;
 import entity.ProductPrice;
 import entity.ProductTotal;
+import execption.BlankException;
 import repository.StoreRepository;
 import repository.StoreRepositoryImpl;
+import util.ValidationUtil;
 
 public class StoreServiceImpl implements StoreService{
     private StoreRepository storeRepository;
@@ -28,7 +30,7 @@ public class StoreServiceImpl implements StoreService{
 
             var no = i + 1;
 
-            if (product != null && price != null && total != null){
+            if (product != null || price != null || total != null){
                 System.out.println(no + ". " + "Product: "+ product.getProduct() + " || "+"Price: " + price + " || "+"Total: " + total);
             }
         }
@@ -40,6 +42,12 @@ public class StoreServiceImpl implements StoreService{
         Product productName = new Product(product);
 //        ProductPrice productPrice = new ProductPrice(price);
 //        ProductTotal productTotal = new ProductTotal(total);
+        try{
+            ValidationUtil.validate(productName, price, total);
+        } catch (NullPointerException | BlankException | IllegalArgumentException exception){
+            System.out.println("Error " + exception.getMessage());
+        }
+
         var success = storeRepository.add(productName, price, total);
         if (success){
             System.out.println("Sukses menambah product: " + productName.getProduct());

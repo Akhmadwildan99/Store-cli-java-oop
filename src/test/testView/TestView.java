@@ -26,6 +26,7 @@ public class TestView {
         storeService.addProduct("Gulaku", 9000, 500);
         storeService.addProduct("Malkis", 1000, 300);
         storeService.addProduct("Roma Gandum", 5000, 500);
+        storeService.addProduct("Roma Gandum", 9000, 500);
         storeView.showProducts();
     }
 }

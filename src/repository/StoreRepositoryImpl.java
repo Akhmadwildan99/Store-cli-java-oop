@@ -94,18 +94,33 @@ public class StoreRepositoryImpl implements StoreRepository{
         }
     }
 
+    public boolean checkIfNull(Product product, Integer price, Integer total){
+        if (product.getProduct() == null || price == null || total == null){
+            return true;
+        } else if (product.getProduct().isBlank() || price == 0 || total == 0){
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public boolean add(Product product, Integer price, Integer total) {
 
         if (isExist(product)){
             return false;
         } else {
-            reSizeIfFull();
-            products[size] = product;
-            totals[size] = total;
-            prices[size] = price;
-            size ++;
-            return true;
+            boolean check = checkIfNull(product, price, total);
+            if (check){
+                return false;
+            } else {
+                reSizeIfFull();
+                products[size] = product;
+                totals[size] = total;
+                prices[size] = price;
+                size ++;
+                return true;
+            }
+
         }
     }
 
