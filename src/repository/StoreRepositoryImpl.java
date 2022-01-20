@@ -68,10 +68,8 @@ public class StoreRepositoryImpl implements StoreRepository{
             var tempTotal = totals;
             
             products = new Product[products.length * 2];
-//            prices = new ProductPrice[prices.length * 2];
-//            totals = new ProductTotal[totals.length * 2];
-                prices = new Integer[prices.length * 2];
-                totals = new Integer[totals.length * 2];
+            prices = new Integer[prices.length * 2];
+            totals = new Integer[totals.length * 2];
 
             for (int i = 0; i < tempProduct.length; i++) {
                 products[i] = tempProduct[i];
