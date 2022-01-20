@@ -21,6 +21,7 @@ public class StoreServiceImpl implements StoreService{
         Integer[] prices = storeRepository.getAllPrice();
         Integer[] totals = storeRepository.getAllTotal();
 
+        System.out.println(" ");
         System.out.println("STORE PRODUCTS");
 
         for (int i = 0; i < products.length ; i++) {

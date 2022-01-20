@@ -29,4 +29,40 @@ public class TestView {
         storeService.addProduct("Roma Gandum", 9000, 500);
         storeView.showProducts();
     }
+
+    public static void testViewAddProduct(){
+        StoreRepository storeRepository = new StoreRepositoryImpl();
+        StoreService storeService = new StoreServiceImpl(storeRepository);
+        StoreView storeView = new StoreView(storeService);
+        storeService.addProduct("Mizone", 4000, 50);
+        storeService.addProduct("Pocari", 5000, 60);
+        storeService.addProduct("Teh pucuk", 6000, 50);
+        storeService.showProduct();
+        storeView.addProduct();
+        storeService.showProduct();
+    }
+
+    public static void testViewCheckout1(){
+        StoreRepository storeRepository = new StoreRepositoryImpl();
+        StoreService storeService = new StoreServiceImpl(storeRepository);
+        StoreView storeView = new StoreView(storeService);
+        storeService.addProduct("Mizone", 4000, 50);
+        storeService.addProduct("Pocari", 5000, 60);
+        storeService.addProduct("Teh pucuk", 6000, 50);
+        storeService.showProduct();
+        storeView.checkOutWithPrice();
+        storeService.showProduct();
+    }
+
+    public static void testViewCheckout2(){
+        StoreRepository storeRepository = new StoreRepositoryImpl();
+        StoreService storeService = new StoreServiceImpl(storeRepository);
+        StoreView storeView = new StoreView(storeService);
+        storeService.addProduct("Mizone", 4000, 50);
+        storeService.addProduct("Pocari", 5000, 60);
+        storeService.addProduct("Teh pucuk", 6000, 50);
+        storeService.showProduct();
+        storeView.checkOutWithTotal();
+        storeService.showProduct();
+    }
 }

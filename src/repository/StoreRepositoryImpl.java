@@ -163,7 +163,7 @@ public class StoreRepositoryImpl implements StoreRepository{
 
                 totals[index] -= getProduct;
                 var remove = removeStock(totals[index], index, product);
-                if (totals[index] != null ){
+                if (!remove){
                     System.out.println("Sisa stock " + product.getProduct() + ": " +totals[index]);
                     System.out.println("Kembalian anda: "+ remainder);
                 }

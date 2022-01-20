@@ -1,5 +1,6 @@
 package entity;
 
+import java.util.Locale;
 import java.util.Objects;
 
 public class Product {
@@ -10,7 +11,7 @@ public class Product {
     }
 
     public Product(String product) {
-        this.product = product;
+        this.product = product.toLowerCase();
     }
 
     public String getProduct() {

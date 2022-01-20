@@ -39,13 +39,50 @@ public class StoreView {
 
     public void addProduct(){
 
+        System.out.println(" ");
+        System.out.println("MENAMBAH PRODUCT!!");
+
+        var inputProduct = InputUtil.input("Masukan product (x jika batal): ");
+        var inputPrice = InputUtil.input("Masukan harga: ");
+        var inputTotal = InputUtil.input("masukan total: ");
+
+        System.out.println(" ");
+
+        if (inputProduct.equals("x") ){
+            //false
+        } else {
+            storeService.addProduct(inputProduct.toLowerCase(), Integer.valueOf(inputPrice), Integer.valueOf(inputTotal));
+        }
+
     }
 
     public void checkOutWithPrice(){
+        System.out.println(" ");
+        System.out.println("CHECK-OUT DENGAN JUMLAH UANG!!");
+        var inputProduct = InputUtil.input("Masukan product (x jika batal): ");
+        var inputPrice = InputUtil.input("Masukan jumlah uang: ");
 
+        System.out.println(" ");
+
+        if (inputProduct.equals("x") ){
+            //false
+        } else {
+            storeService.outProduct(inputProduct.toLowerCase(), Integer.valueOf(inputPrice));
+        }
     }
 
     public void checkOutWithTotal(){
+        System.out.println(" ");
+        System.out.println("CHECK-OUT DENGAN JUMLAH YANG MAU ANDA BELI!!");
+        var inputProduct = InputUtil.input("Masukan product (x jika batal): ");
+        var inputTotal = InputUtil.input("masukan total beli: ");
 
+        System.out.println(" ");
+
+        if (inputProduct.equals("x") ){
+            //false
+        } else {
+            storeService.outProduct2(inputProduct.toLowerCase(), Integer.valueOf(inputTotal));
+        }
     }
 }
